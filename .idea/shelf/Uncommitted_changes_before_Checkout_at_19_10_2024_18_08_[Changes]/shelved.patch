@@ -1,0 +1,13 @@
+Index: app/src/main/java/com/example/myapplication/zadanie1v9.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/zadanie1v9.kt b/app/src/main/java/com/example/myapplication/zadanie1v9.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/myapplication/zadanie1v9.kt	(revision f13652bbf0710bf0876129fc31a764850986d747)
++++ /dev/null	(revision f13652bbf0710bf0876129fc31a764850986d747)
+@@ -1,5 +0,0 @@
+-package com.example.myapplication
+-
+-fun zadanie1v9() {
+-
+-}
+\ No newline at end of file

@@ -1,0 +1,30 @@
+Index: app/src/main/java/com/example/myapplication/zadanie1v9.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication\r\n\r\nfun zadanie1v9() {\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/zadanie1v9.kt b/app/src/main/java/com/example/myapplication/zadanie1v9.kt
+--- a/app/src/main/java/com/example/myapplication/zadanie1v9.kt	(revision f13652bbf0710bf0876129fc31a764850986d747)
++++ b/app/src/main/java/com/example/myapplication/zadanie1v9.kt	(date 1729350515441)
+@@ -1,5 +1,18 @@
+ package com.example.myapplication
+ 
+ fun zadanie1v9() {
++    val k1  = 6.0
++    val k2  = 10.0
++    val g = Math.sqrt(k1 * k1 + k2 * k2)
++
+ 
++    val area = 0.5 * k1 * k2
++
++
++    val perimeter = k1 + k2 + g
++
++
++    println("Гипотенуза: $g")
++    println("Площадь: $area")
++    println("Периметр: $perimeter")
+ }
+\ No newline at end of file
