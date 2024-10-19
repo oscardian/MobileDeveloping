@@ -15,4 +15,8 @@ fun main() {
     val array = arrayOf(-3, 5, 0, 7, -2, 10)
     val arrayTask2 = array.filter(task2)
     println(arrayTask2)
+    println()
+    zadanie4()
+    println()
+    zadanie5()
 }
