@@ -1,0 +1,18 @@
+Index: app/src/main/java/com/example/myapplication/main.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication\r\n\r\nfun main() {\r\n    println(\"Hello\")\r\n    //Задание 1\r\n    println(\"Введите число\")\r\n    val number =\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/main.kt b/app/src/main/java/com/example/myapplication/main.kt
+--- a/app/src/main/java/com/example/myapplication/main.kt	
++++ b/app/src/main/java/com/example/myapplication/main.kt	
+@@ -4,5 +4,5 @@
+     println("Hello")
+     //Задание 1
+     println("Введите число")
+-    val number =
++    val number = readln().toInt()
+ }
+\ No newline at end of file
