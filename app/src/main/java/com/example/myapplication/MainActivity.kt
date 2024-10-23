@@ -38,6 +38,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme() {
+                getData("London", this)
                 Image(
                     painter = painterResource(id = R.drawable.backgroun_im),
                     contentDescription = "im1",
@@ -57,54 +58,53 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, context: Context) {
-    val state = remember{
-        mutableStateOf("Unknown")
-    }
-    Column(modifier = Modifier.fillMaxSize()) {
-        Box(modifier = Modifier.fillMaxHeight(0.5f)
-            .fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = "Temp in $name = ${state.value} °C")
-        }
-        Box(modifier = Modifier.fillMaxHeight()
-            .fillMaxWidth(),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            Button(onClick = {
-                getResult(name, state, context)
-            }, modifier = Modifier.padding(5.dp)
-                .fillMaxWidth()
-            ) {
-                Text(text = "Refresh")
-            }
-        }
+//@Composable
+//fun Greeting(name: String, context: Context) {
+//    val state = remember{
+//        mutableStateOf("Unknown")
+//    }
+//    Column(modifier = Modifier.fillMaxSize()) {
+//        Box(modifier = Modifier.fillMaxHeight(0.5f)
+//            .fillMaxWidth(),
+//            contentAlignment = Alignment.Center
+//        ) {
+//            Text(text = "Temp in $name = ${state.value} °C")
+//        }
+//        Box(modifier = Modifier.fillMaxHeight()
+//            .fillMaxWidth(),
+//            contentAlignment = Alignment.BottomCenter
+//        ) {
+//            Button(onClick = {
+//                getResult(name, state, context)
+//            }, modifier = Modifier.padding(5.dp)
+//                .fillMaxWidth()
+//            ) {
+//                Text(text = "Refresh")
+//            }
+//        }
+//
+//    }
+//
+//}
 
-    }
-
-}
-
-private fun getResult(city: String, state: MutableState<String>, context: Context){
-    val url = "https://api.weatherapi.com/v1/current.json" +
-            "?key=$API_KEY&" +
-            "q=$city" +
-            "&aqi=no"
+private fun getData(city: String, context: Context){
+    val url = "https://api.weatherapi.com/v1/forecast.json?key=$API_KEY" +
+            "&q=$city"+
+            "&days=" +
+            "3" +
+            "&aqi=no&alerts=no\n"
     val queue = Volley.newRequestQueue(context)
-    val stringRequest = StringRequest(
+    val sRequest = StringRequest(
         Request.Method.GET,
         url,
         {
                 response ->
-            val obj = JSONObject(response)
-            state.value = obj.getJSONObject("current").getString("temp_c")
+            Log.d("MyLog", "Response : $response" )
         },
         {
-                error ->
-            Log.d("MyLog", "Error $error")
+            Log.d("MyLog", "VolleyError $it")
         }
     )
-    queue.add(stringRequest)
+    queue.add(sRequest)
 }
 
