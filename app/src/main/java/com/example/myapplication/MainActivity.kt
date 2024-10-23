@@ -19,6 +19,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.myapplication.data.WeatherModel
+import com.example.myapplication.screens.DialogSearch
 import com.example.myapplication.screens.MainCard
 import com.example.myapplication.screens.TabLayout
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -33,6 +34,10 @@ class MainActivity : ComponentActivity() {
                 val daysList = remember {
                     mutableStateOf(listOf<WeatherModel>())
                 }
+                val dialogState = remember {
+                    mutableStateOf(false)
+                }
+
                 val currentDay = remember {
                     mutableStateOf(WeatherModel(
                         "",
@@ -46,6 +51,11 @@ class MainActivity : ComponentActivity() {
                     )
                     )
                 }
+                if(dialogState.value){
+                    DialogSearch(dialogState, onSumbit = {
+                        getData(it, this, daysList, currentDay)
+                    })
+                }
                 getData("London", this, daysList, currentDay)
                 Image(
                     painter = painterResource(id = R.drawable.backgroun_im),
@@ -56,7 +66,12 @@ class MainActivity : ComponentActivity() {
                     contentScale = ContentScale.Crop
                 )
                 Column {
-                    MainCard(currentDay)
+                    MainCard(currentDay, onClickSync = {
+                        getData("London", this@MainActivity, daysList, currentDay)
+                    }, onClickSearch = {
+                        dialogState.value = true
+                    }
+                    )
                     TabLayout(daysList, currentDay)
                 }
 
@@ -66,39 +81,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-
-
-
-
-//@Composable
-//fun Greeting(name: String, context: Context) {
-//    val state = remember{
-//        mutableStateOf("Unknown")
-//    }
-//    Column(modifier = Modifier.fillMaxSize()) {
-//        Box(modifier = Modifier.fillMaxHeight(0.5f)
-//            .fillMaxWidth(),
-//            contentAlignment = Alignment.Center
-//        ) {
-//            Text(text = "Temp in $name = ${state.value} °C")
-//        }
-//        Box(modifier = Modifier.fillMaxHeight()
-//            .fillMaxWidth(),
-//            contentAlignment = Alignment.BottomCenter
-//        ) {
-//            Button(onClick = {
-//                getData(name, state, context)
-//            }, modifier = Modifier.padding(5.dp)
-//                .fillMaxWidth()
-//            ) {
-//                Text(text = "Refresh")
-//            }
-//        }
-//
-//    }
-//
-//}
 
 private fun getData(city: String, context: Context,
                     daysList: MutableState<List<WeatherModel>>,
